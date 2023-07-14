@@ -10,7 +10,7 @@ import { Poppins } from "next/font/google";
 const Navbar = () => {
   return (
     <div className="w-full">
-      <nav className="bg-gray-200 shadow-sm fixed top-0 w-full">
+      <nav className="bg-slate-200 shadow-sm fixed top-0 w-full z-50 backdrop-blur-sm">
         <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center w-full justify-between">
