@@ -15,7 +15,7 @@ const Footer = () => {
           <Link href="#link">Galeri</Link>
         </div>
         <div className="flex flex-col items-end gap-2 mt-8 md:mt-5">
-          <div className="flex gap-5 w-full justify-center">
+          <div className="flex gap-5 w-full justify-center md:justify-end">
             <Link href="#linktiktok">
               <Image
                 src={`/assets/icons/tiktok.svg`}
@@ -49,7 +49,9 @@ const Footer = () => {
           </p>
         </div>
         <div className="absolute inset-x-1/3 items-center px-0 md:px-36 2xl:px-56 -z-0">
-          <Image src={Logo} alt="logo" width={200} />
+          <Link href="/">
+            <Image src={Logo} alt="logo" width={200} />
+          </Link>
         </div>
         <div className="absolute inset-x-48 2xl:inset-x-56 -z-10 opacity-75">
           <Image src={Accent} alt="accent" />

@@ -23,7 +23,7 @@ const SwiperComponent = ({ slides }) => {
           pagination={{ clickable: true }}
           // onSlideChange={() => console.log("slide change")}
           // onSwiper={(swiper) => console.log(swiper)}
-          autoplay={{ delay: 3000 }}
+          autoplay={{ delay: 1000 }}
         >
           {slides.map((slide) => (
             <SwiperSlide

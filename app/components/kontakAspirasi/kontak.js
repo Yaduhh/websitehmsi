@@ -16,7 +16,7 @@ const Kontak = () => {
               type="text"
               id="name"
               name="name"
-              className="mt-1 p-2 border rounded-xl w-full focus:outline-none focus:ring focus:border-secondary"
+              className="mt-1 p-2 font-light border text-sm rounded-xl w-full focus:outline-none focus:ring focus:border-secondary"
               placeholder="Masukkan nama Anda"
             />
           </div>
@@ -31,7 +31,7 @@ const Kontak = () => {
               type="email"
               id="email"
               name="email"
-              className="mt-1 p-2 border rounded-xl w-full focus:outline-none focus:ring focus:border-secondary"
+              className="mt-1 p-2 font-light border text-sm rounded-xl w-full focus:outline-none focus:ring focus:border-secondary"
               placeholder="Masukkan alamat email Anda"
             />
           </div>
@@ -46,7 +46,7 @@ const Kontak = () => {
               id="message"
               name="message"
               rows="4"
-              className="mt-1 p-2 border rounded-xl w-full focus:outline-none focus:ring focus:border-secondary"
+              className="mt-1 p-2 font-light text-sm border rounded-xl w-full focus:outline-none focus:ring focus:border-secondary"
               placeholder="Ada unek-unek apa broo, ketik disini aje"
             ></textarea>
           </div>

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import Navbar from "./components/navbar/navbar";
@@ -37,8 +39,122 @@ import Mediapartner from "./components/mediapart/mediapartner";
 import Faq from "./components/faq/faq";
 import Kontak from "./components/kontakAspirasi/kontak";
 import Footer from "./components/footer/footer";
+import { useState, useEffect } from "react";
+import NavProfil from "./components/_child/navprofil";
 
 export default function Home() {
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth);
+    }
+
+    handleResize(); // Set initial window width
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // Ini jumlah item yang ingin ditampilkan sesuai dengan lebar layar
+  let numItemsToDisplay = 3; // Jumlah default pada lebar layar terkecil
+  if (windowWidth >= 640) {
+    numItemsToDisplay = 2;
+  }
+  if (windowWidth >= 1024) {
+    numItemsToDisplay = 6;
+  }
+  if (windowWidth >= 1440) {
+    numItemsToDisplay = 8;
+  }
+
+  const artikel = [
+    {
+      id: 1,
+      thumbnail: Thumbnail,
+      category: "IT",
+      title: "Revolusi Artificial Intelligence",
+      date: "12 Oktober 2023",
+      views: 1200,
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets contai",
+    },
+    {
+      id: 2,
+      thumbnail: Thumbnail2,
+      category: "Jurnal",
+      title: "How to be Programming Amatir",
+      date: "12 Oktober 2023",
+      views: 999,
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets contai",
+    },
+    {
+      id: 3,
+      thumbnail: Thumbnail3,
+      category: "Event",
+      title: "SENSASI Sistem Informasi 2023",
+      date: "12 Oktober 2023",
+      views: 999,
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets contai",
+    },
+    {
+      id: 4,
+      thumbnail: Thumbnail,
+      category: "Informasi Prodi",
+      title: "10 Situs Zeus terpercaya",
+      date: "12 Oktober 2023",
+      views: 999,
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets contai",
+    },
+    {
+      id: 5,
+      thumbnail: Thumbnail2,
+      category: "Jurnal",
+      title: "How to be FrontEnd Web Developher",
+      date: "12 Oktober 2023",
+      views: 999,
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets contai",
+    },
+    {
+      id: 6,
+      thumbnail: Thumbnail3,
+      category: "Story",
+      title: "BackEnd Developher So Hard",
+      date: "12 Oktober 2023",
+      views: 999,
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets contai",
+    },
+    {
+      id: 7,
+      thumbnail: Thumbnail,
+      category: "Event",
+      title: "Prodi SI Raih MABA Terbanyak",
+      date: "12 Oktober 2023",
+      views: 999,
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets contai",
+    },
+    {
+      id: 8,
+      thumbnail: Thumbnail2,
+      category: "Random",
+      title: "Pendaftaran HIMA is Coming",
+      date: "12 Oktober 2023",
+      views: 999,
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets contai",
+    },
+  ];
+
+  const displayedArtikel = artikel.slice(0, numItemsToDisplay);
+
   const baliho = [
     {
       id: 1,
@@ -61,6 +177,7 @@ export default function Home() {
       title: "Ini baliho1",
     },
   ];
+
   let galeri = [
     {
       image: Kegiatan1,
@@ -102,17 +219,17 @@ export default function Home() {
     },
     {
       question: "Apa saja ketentuan untuk masuk HMSI ?",
-      answer: "Anak sistem informasi UNPAM aje",
+      answer: "Mencintai banteng merah, karena PDH kita merah",
       foto: Peoplefaq2,
     },
     {
       question: "Benefit apa yang didapat kalau join HMSI ?",
-      answer: "Minimal dapet kyubi dan gelar hokage",
+      answer: "Minimal bisalah jadi jari kelingkingnya rektor",
       foto: Peoplefaq3,
     },
     {
-      question: "Bisa ga nyari jodoh atau doi di organisasi HMSI ?",
-      answer: "Mimin aje masih jomblo",
+      question: "Di HMSI bisa sekalian nyari do'i atau jodoh ga min?",
+      answer: "Jangankan kamu, Mimin aje masih jomblo :(",
       foto: Peoplefaq4,
     },
     {
@@ -171,7 +288,7 @@ export default function Home() {
           <Banner baliho={baliho} />
         </div>
 
-        <div className="w-full flex flex-col gap-5 items-center 2xl:items-stretch mt-6 overflow-hidden md:px-0 px-6">
+        <div className="w-full flex flex-col gap-5 items-stretch 2xl:items-stretch mt-6 overflow-hidden md:px-0 px-6">
           <div className="flex items-center gap-10 justify-around">
             <div className="w-full 2xl:px-28 flex justify-between flex-col">
               <div className="font-medium text-xl 2xl:px-0 xl:px-12">
@@ -181,102 +298,56 @@ export default function Home() {
                 <Image src={Ihome} alt="ihome" />
                 <p>Home</p>
               </div>
-              <div className="w-full flex gap-10 xl:gap-4 2xl:gap-10 justify-between flex-wrap 2xl:px-0 xl:px-12">
-                <div className="max-w-sm">
-                  <Artikel
-                    thumbnail={Thumbnail}
-                    kategori="IT"
-                    judul="Revolusi Artificial Intelligence"
-                    date="12 Oktober 2023"
-                    views={1200}
-                    descrip="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets contai"
-                  />
-                </div>
-                <div className="max-w-sm">
-                  <Artikel
-                    thumbnail={Thumbnail2}
-                    kategori="Jurnal"
-                    judul="Revolusi Artificial Intelligence"
-                    date="12 Oktober 2023"
-                    views={1200}
-                    descrip="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets contai"
-                  />
-                </div>
-                <div className="max-w-sm">
-                  <Artikel
-                    thumbnail={Thumbnail3}
-                    kategori="Info"
-                    judul="Revolusi Artificial Intelligence"
-                    date="12 Oktober 2023"
-                    views={1200}
-                    descrip="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets contai"
-                  />
-                </div>
-                <div className="max-w-sm">
-                  <Artikel
-                    thumbnail={Thumbnail3}
-                    kategori="Info"
-                    judul="Revolusi Artificial Intelligence"
-                    date="12 Oktober 2023"
-                    views={1200}
-                    descrip="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets contai"
-                  />
-                </div>
-                <div className="max-w-sm">
-                  <Artikel
-                    thumbnail={Thumbnail2}
-                    kategori="HOT"
-                    judul="Revolusi Artificial Intelligence"
-                    date="12 Oktober 2023"
-                    views={1200}
-                    descrip="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets contai"
-                  />
-                </div>
-                <div className="max-w-sm">
-                  <Artikel
-                    thumbnail={Thumbnail}
-                    kategori="IT"
-                    judul="Revolusi Artificial Intelligence"
-                    date="12 Oktober 2023"
-                    views={1200}
-                    descrip="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets contai"
-                  />
-                </div>
-              </div>
             </div>
+          </div>
+          <div className="w-full gap-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 justify-items-stretch md:justify-items-center px-0 md:px-10 2xl:px-28">
+            {displayedArtikel.map((item, index) => (
+              <div className="max-w-sm" key={index}>
+                <Artikel
+                  thumbnail={item.thumbnail}
+                  category={item.category}
+                  title={item.title}
+                  date={item.date}
+                  views={item.views}
+                  description={item.description}
+                />
+              </div>
+            ))}
           </div>
           <div className="flex items-center mt-2 md:mt-5 gap-5 md:flex-row flex-col">
             <div className="h-[0.5px] bg-slate-400 w-full ml-16 md:block hidden"></div>
-            <div className="flex items-center justify-center text-slate-600 ">
+            <div className="flex flex-row items-stretch justify-between text-slate-600 gap-4">
               <Link
                 href="#"
-                className="px-4 py-2 border border-gray-300 rounded-xl mr-2 hover:bg-gray-100"
+                className="px-4 py-2 border border-gray-300 rounded-xl hover:bg-gray-100"
               >
-                Previous
+                Sebelumnya
               </Link>
+              <div className="flex gap-2">
+                <Link
+                  href="#"
+                  className="px-4 py-2 border border-gray-300 rounded-xl bg-gray-200"
+                >
+                  1
+                </Link>
+                <Link
+                  href="#"
+                  className="px-4 py-2 border border-gray-300 rounded-xl hover:bg-gray-100"
+                >
+                  2
+                </Link>
+                <Link
+                  href="#"
+                  className="px-4 py-2 border border-gray-300 rounded-xl hover:bg-gray-100"
+                >
+                  3
+                </Link>
+              </div>
               <Link
                 href="#"
-                className="px-4 py-2 border border-gray-300 rounded-xl mr-2 bg-gray-200"
+                className="px-4 py-2 border border-gray-300 rounded-xl hover:bg-gray-100"
               >
-                1
-              </Link>
-              <Link
-                href="#"
-                className="px-4 py-2 border border-gray-300 rounded-xl mr-2 hover:bg-gray-100"
-              >
-                2
-              </Link>
-              <Link
-                href="#"
-                className="px-4 py-2 border border-gray-300 rounded-xl mr-2 hover:bg-gray-100"
-              >
-                3
-              </Link>
-              <Link
-                href="#"
-                className="px-4 py-2 border border-gray-300 rounded-xl ml-2 hover:bg-gray-100"
-              >
-                Next
+                Selanjutnya
               </Link>
             </div>
             <div className="h-[0.5px] bg-slate-400 w-full mr-16 md:block hidden"></div>
@@ -285,7 +356,7 @@ export default function Home() {
       </section>
 
       <section id="profil">
-        <div className="w-full flex flex-col gap-7 2xl:gap-8 md:h-screen overflow-hidden h-auto md:py-0 py-10">
+        <div className="w-full flex flex-col gap-7 2xl:gap-5 md:h-screen overflow-hidden h-auto md:py-0 py-10">
           <div className="mt-10 md:mt-20 2xl:mt-24 px-6 2xl:px-14 md:px-10">
             <p className="text-primary font-medium text-2xl 2xl:text-3xl">
               Ada siapa aja sih di HMSI ?
@@ -294,23 +365,7 @@ export default function Home() {
               Himpunan Mahasiswa Sistem Informasi Periode 2022 - 2023
             </p>
           </div>
-          <div className="gap-9 items-center flex overflow-auto w-full md:px-10 2xl:px-14 px-6">
-            <div className="bg-secondary px-5 py-2 rounded-3xl text-white">
-              Semua
-            </div>
-            <div className="rounded-3xl text-primary">
-              <p>Badan Pengurus Harian</p>
-            </div>
-            <div className="rounded-3xl text-primary">
-              Pengkaderan Organisasi
-            </div>
-            <div className="rounded-3xl text-primary">
-              Pengembangan Akademik
-            </div>
-            <div className="rounded-3xl text-primary">HUMINKOM</div>
-            <div className="rounded-3xl text-primary">Kewirausahaan</div>
-            <div className="rounded-3xl text-primary">Minat Bakat</div>
-          </div>
+          <NavProfil />
           <div>
             <SwiperComponent slides={slides} />
           </div>
