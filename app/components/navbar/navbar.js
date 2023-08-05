@@ -14,6 +14,21 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  const handleScroll = (e) => {
+    // first prevent the default behavior
+    e.preventDefault();
+    // get the href and remove everything before the hash (#)
+    const href = e.currentTarget.href;
+    const targetId = href.replace(/.*\#/, "");
+    // get the element by id and use scrollIntoView
+    console.log(targetId);
+    const elem = document.getElementById(targetId);
+    elem?.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       {/* Navbar md - 2xl */}
@@ -28,12 +43,12 @@ const Navbar = () => {
                   </Link>
                 </div>
                 <div className="flex gap-10 text-lg text-primary">
-                  <Link href="#beranda">Beranda</Link>
-                  <Link href="#artikel">Artikel</Link>
-                  <Link href="/#profil">Profil</Link>
-                  <Link href="/#galeri">Galeri</Link>
-                  <Link href="/#tentang">Tentang</Link>
-                  <Link href="/#faq">FAQ</Link>
+                  <Link href="#beranda" onClick={handleScroll}>Beranda</Link>
+                  <Link href="#artikel" onClick={handleScroll}>Artikel</Link>
+                  <Link href="#profil" onClick={handleScroll}>Profil</Link>
+                  <Link href="#galeri" onClick={handleScroll}>Galeri</Link>
+                  <Link href="#tentang" onClick={handleScroll}>Tentang</Link>
+                  <Link href="#faq" onClick={handleScroll}>FAQ</Link>
                 </div>
                 {/* Login */}
                 <div className="flex">
