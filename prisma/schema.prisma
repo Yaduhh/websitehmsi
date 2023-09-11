@@ -46,3 +46,10 @@ model User {
     accounts       Account[]
     sessions       Session[]
 }
+
+model Article {
+    id        Int      @id @default(autoincrement())
+    title     String
+    content   String
+    createdAt DateTime @default(now())
+}
