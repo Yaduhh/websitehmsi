@@ -1,24 +1,26 @@
-import prisma from "@/app/server/db/prisma";
+// import prisma from "@/app/server/db/prisma";
+import { PrismaClient } from "@prisma/client"
+import { NextResponse } from "next/server";
 
-export default async function PostArtikel(req, res) {
+const prisma = new PrismaClient();
+
+export async function POST(req, res) {
   if (req.method == "POST") {
-    const { title, content } = req.body;
-    console.log(req.body);
+    const data = await req.json();
+    const { title, content } = data;
 
     try {
-      await prisma.article.create({
+      const response = await prisma.article.create({
         data: {
           title: title,
           content: content,
         },
       });
-      return res.status(200).json({
-        data: "Success",
-      });
+      return NextResponse.json({ data: response })
     } catch (err) {
-      return res.status(504).json({ error: err.toString() });
+      return NextResponse.json({ error: err.toString() });
     }
   } else {
-    return res.status(405).json({ error: "Method not Allowed" });
+    return NextResponse.json({ error: "Method not allowed" })
   }
 }

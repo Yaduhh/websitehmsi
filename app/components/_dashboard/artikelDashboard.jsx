@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function ArtikelDashboard() {
+export default function ArtikelDashboard({session}) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -13,11 +13,15 @@ export default function ArtikelDashboard() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ title, content }),
+        body: JSON.stringify({ title, content, session }),
       });
 
-      if (response.status === 201) {
+      console.log(`response of post: `, response);
+
+      if (response.status === 200) {
         console.log("berhasil sih harusnya");
+        const responseJson = await response.json();
+        console.log(responseJson);
       } else {
         console.error("Error creating article");
       }
