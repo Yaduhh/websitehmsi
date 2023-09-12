@@ -85,10 +85,12 @@ export default function DashboardPage() {
       <div className="w-full h-80 bg-primary absolute top-0 left-0 -z-30"></div>
 
       <div className="w-full 2xl:px-14 px-10 mt-6 flex justify-between gap-10">
-        <div className="w-[20%] flex flex-col 2xl:gap-20 gap-10 border-2 bg-white border-gray-400 shadow-inner rounded-3xl h-[85vh] 2xl:p-10 p-6 relative">
+        <div className="w-[20%] flex flex-col 2xl:gap-20 gap-2 border-2 bg-white border-gray-400 shadow-inner rounded-3xl h-[85vh] 2xl:p-10 p-6 relative">
           {/* HMSI */}
           <div className="text-primary flex flex-col gap-2">
-            <p className="text-xl text-gray-400 font-medium mb-2">HMSI</p>
+            <p className="text-xl text-gray-400 font-medium 2xl:mb-2 mb-1">
+              HMSI
+            </p>
             <ul className="cursor-pointer space-y-1">
               <li>
                 <a onClick={() => setActiveMenu((prev) => (prev = 1))}>
@@ -131,7 +133,9 @@ export default function DashboardPage() {
 
           {/* Fitur */}
           <div className="text-primary flex flex-col gap-2">
-            <p className="text-xl text-gray-400 font-medium mb-2">Fitur</p>
+            <p className="text-xl text-gray-400 font-medium 2xl:mb-2 mb-1">
+              Fitur
+            </p>
             <ul className="cursor-pointer space-y-1">
               <li>
                 <a onClick={() => setActiveMenu((prev) => (prev = 4))}>
@@ -174,7 +178,9 @@ export default function DashboardPage() {
 
           {/* Akun */}
           <div className="text-primary flex flex-col gap-2">
-            <p className="text-xl text-gray-400 font-medium mb-2">Akun</p>
+            <p className="text-xl text-gray-400 font-medium 2xl:mb-2 mb-1">
+              Akun
+            </p>
             <ul className="cursor-pointer space-y-1">
               <li>
                 <a onClick={() => setActiveMenu((prev) => (prev = 7))}>
@@ -254,7 +260,7 @@ export default function DashboardPage() {
               </div>
             )}
           </div>
-          <div className="w-full flex flex-col border-2 bg-white border-gray-400 shadow-inner rounded-3xl h-[75vh] 2xl:h-[78vh] p-10 relative">
+          <div className="w-full flex flex-col border-2 bg-white border-gray-400 shadow-inner 2xl:rounded-3xl rounded-xl h-[75vh] 2xl:h-[78vh] 2xl:p-10 p-3 relative">
             {activeMenu == 1 && <HomeDashboard />}
             {activeMenu == 2 && <ServiceDashboard />}
             {activeMenu == 3 && <KepengurusanDashboard />}

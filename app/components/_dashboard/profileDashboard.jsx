@@ -3,8 +3,6 @@
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 export default function Profile() {
   const [newName, setNewName] = useState("");
@@ -22,13 +20,14 @@ export default function Profile() {
         <div>
           <h3 className="text-xl font-semibold">{session?.user.name}</h3>
           <p className="text-gray-500">Bidang PAO</p>
+          <p className="text-gray-500">
+            Nomor Anggota : {session?.user.nomorAnggota}
+          </p>
         </div>
       </div>
-      <p className="mt-4">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-        fringilla efficitur ex ac scelerisque.
-      </p>
-      <div className="text-4xl">Hi {session?.user.name}</div>
+
+      {/* Ubah Nama Profil */}
+      {/* <label>Ubah Nama Profil</label>
       <input
         type="text"
         placeholder="update nama"
@@ -40,7 +39,7 @@ export default function Profile() {
         onClick={() => update({ name: newName })}
       >
         Update nama
-      </button>
+      </button> */}
     </>
   );
 }
