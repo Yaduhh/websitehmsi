@@ -19,6 +19,8 @@ export default function LoginPage() {
 
   const [error, setError] = useState(null);
 
+  const [loading, setLoading] = useState(false);
+
   const { data: session } = useSession(); // Use the useSession hook to get session data
   useEffect(() => {
     // Check if user is logged in and redirect to the dashboard page
@@ -30,17 +32,23 @@ export default function LoginPage() {
   const loginUser = async (e) => {
     e.preventDefault();
     try {
+      console.log(`checking login creds`);
+      setLoading(true);
       const res = await signIn("credentials", {
         ...data,
         redirect: false,
       });
       if (res?.error) {
         setError("Email atau kata sandi salah. Silakan coba lagi.");
+        setLoading(false);
       } else {
         setError(null);
+        setLoading(false);
+        console.log('login berhasil!');
         router.push("/dashboard");
       }
     } catch (error) {
+      setLoading(false);
       setError("Terjadi kesalahan saat login. Silakan coba lagi.");
       console.log(res);
     }
@@ -125,63 +133,72 @@ export default function LoginPage() {
               Masuk Akun
             </p>
             <div className="w-full px-6 md:px-36 2xl:px-44">
-              <form onSubmit={loginUser}>
-                <p>{error}</p>
-                <div className="mb-4 2xl:mb-8">
-                  <label
-                    className="block text-primary text-sm font-semibold mb-2 2xl:text-xl"
-                    htmlFor="email"
-                  >
-                    Email Pengurus
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    className="shadow rounded-2xl appearance-none w-full py-2 px-3 2xl:px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    placeholder="Your Name"
-                    required
-                    value={data.email}
-                    onChange={(e) => {
-                      setData({ ...data, email: e.target.value });
-                    }}
-                  />
-                </div>
-                <div className="mb-4 2xl:mb-8">
-                  <label
-                    className="block text-primary text-sm font-semibold mb-2 2xl:text-xl"
-                    htmlFor="password"
-                  >
-                    Password atau kata sandi
-                  </label>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    className="shadow appearance-none rounded-2xl w-full py-2 px-3 2xl:px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    placeholder="Password"
-                    required
-                    value={data.password}
-                    onChange={(e) => {
-                      setData({ ...data, password: e.target.value });
-                    }}
-                  />
-                </div>
-                <div className="flex items-center justify-between flex-row-reverse">
-                  <button
-                    className="bg-third duration-300 2xl:px-10 2xl:py-2 hover:bg-secondary text-white font-medium py-2 px-4 rounded-3xl focus:outline-none focus:shadow-outline"
-                    type="submit"
-                  >
-                    Masuk
-                  </button>
-                  <Link
-                    className="inline-block align-baseline font-bold text-sm text-accent hover:text-primary duration-200"
-                    href="#"
-                  >
-                    Forgot Password?
-                  </Link>
-                </div>
-              </form>
+              {
+                !loading
+                ?
+                <form onSubmit={loginUser}>
+                  <p>{error}</p>
+                  <div className="mb-4 2xl:mb-8">
+                    <label
+                      className="block text-primary text-sm font-semibold mb-2 2xl:text-xl"
+                      htmlFor="email"
+                    >
+                      Email Pengurus
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      className="shadow rounded-2xl appearance-none w-full py-2 px-3 2xl:px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      placeholder="Your Name"
+                      required
+                      value={data.email}
+                      onChange={(e) => {
+                        setData({ ...data, email: e.target.value });
+                      }}
+                    />
+                  </div>
+                  <div className="mb-4 2xl:mb-8">
+                    <label
+                      className="block text-primary text-sm font-semibold mb-2 2xl:text-xl"
+                      htmlFor="password"
+                    >
+                      Password atau kata sandi
+                    </label>
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      className="shadow appearance-none rounded-2xl w-full py-2 px-3 2xl:px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      placeholder="Password"
+                      required
+                      value={data.password}
+                      onChange={(e) => {
+                        setData({ ...data, password: e.target.value });
+                      }}
+                    />
+                  </div>
+                  <div className="flex items-center justify-between flex-row-reverse">
+                    <button
+                      className="bg-third duration-300 2xl:px-10 2xl:py-2 hover:bg-secondary text-white font-medium py-2 px-4 rounded-3xl focus:outline-none focus:shadow-outline"
+                      type="submit"
+                    >
+                      Masuk
+                    </button>
+                    <Link
+                      className="inline-block align-baseline font-bold text-sm text-accent hover:text-primary duration-200"
+                      href="#"
+                    >
+                      Forgot Password?
+                    </Link>
+                  </div>
+                </form>
+                :
+                <p className="flex w-full h-screen items-center justify-center">
+                  Loading...
+                </p>
+              }
+              
             </div>
           </div>
         </div>
